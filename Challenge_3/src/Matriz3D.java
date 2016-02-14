@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package housepaint;
 
 /**
@@ -19,7 +13,6 @@ public class Matriz3D {
                                   {0,0,0,1}};
     public Matriz3D() {
         this.matriz3D = this.identidad;
-        
     }
 
     public double[][] getMatriz3D() {

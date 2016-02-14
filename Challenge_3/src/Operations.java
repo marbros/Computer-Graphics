@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package housepaint;
 
 /**
@@ -22,12 +16,11 @@ public class Operations {
             }
             array[i] = acum;
             acum = 0;
-        }       
+        }
         Punto2D res = new Punto2D(array[0], array[1], array[2]);
-        
         return res;
     }
-    
+
     //Multiplica 1 matriz 3D por un vector
     public static Punto3D multiplicar(Matriz3D matriz3D, Punto3D punto3D){
         double acum = 0;
@@ -43,7 +36,7 @@ public class Operations {
         Punto3D res = new Punto3D(array[0], array[1], array[2], array[3]);
         return res;
     }
-    
+
     //Multiplica 2 matrices 2D
     public double[][] multi_Matriz2D(Matriz2D matriz1, Matriz2D matriz2){
         double[][] res = new double[3][3];
@@ -57,7 +50,7 @@ public class Operations {
         }
         return res;
     }
-    
+
     //Multiplica 2 matrices 3D
     public double[][] multi_Matriz3D(Matriz3D matriz1, Matriz3D matriz2){       
      
@@ -72,7 +65,7 @@ public class Operations {
         }
         return res;
     }
-    
+
     //Suma 2 matrices 2D
     public double[][] sumaMatriz2D(Matriz2D matriz1, Matriz2D matriz2){     
         double[][] res = new double[3][3];
@@ -80,10 +73,10 @@ public class Operations {
             for (int j = 0; j < 3; j++) {
                 res[i][j] = matriz1.getMatriz2D()[i][j] + matriz2.getMatriz2D()[i][j];
             }
-        }        
+        }
         return res;
     }
-    
+
     //Suma 2 matrices 3D
     public double[][] sumaMatrix3D(Matriz3D matriz1, Matriz3D matriz2){     
         double[][] res = new double[4][4];
@@ -91,7 +84,7 @@ public class Operations {
             for (int j = 0; j < 4; j++) {
                 res[i][j] = matriz1.getMatriz3D()[i][j] + matriz2.getMatriz3D()[i][j];
             }
-        }        
+        }
         return res;
     }
 }
