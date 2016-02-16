@@ -36,6 +36,14 @@ public class Matriz {
     }
     
     public static float[][] normalize(float a[][]){
+        int aRows = a.length,
+            aColumns = a[0].length;
+        float[][] resultant = new float[aRows-1][aColumns];
+        for (int i=0; i < aRows-1; i++){
+            for (int j=0; j < aColumns; j++)
+                resultant[i][j] = a[i][j]/a[aRows-1][j];
+        }
+        return resultant;
     }
 }
 
