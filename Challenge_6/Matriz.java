@@ -33,6 +33,15 @@ public class Matriz {
     }
     
     public static float[][] transpose(float a[][]) {
+        int aRows = a.length,
+            aColumns = a[0].length;
+
+        float[][] resultant = new float[aColumns][aRows];
+        
+        for(int i=0; i<aRows; i++)
+            for (int j=0; j<aColumns; j++)
+                resultant[j][i] = a[i][j];
+        return resultant;
     }
     
     public static float[][] normalize(float a[][]){
