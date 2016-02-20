@@ -29,7 +29,6 @@ public class Matriz {
                 }
             }  
         }
-        return res;
     }
     
     public static float[][] transpose(float a[][]) {
