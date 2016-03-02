@@ -1,5 +1,7 @@
 package escena;
 
+import imagen.Imagen;
+
 public class RayTracer {
 
     Escena escena;
