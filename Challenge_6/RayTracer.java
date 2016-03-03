@@ -1,5 +1,6 @@
 package escena;
 
+import imagen.Pixel;
 import imagen.Imagen;
 
 public class RayTracer {
@@ -14,7 +15,6 @@ public class RayTracer {
         this.alto = alto;
         escena = new Escena();
         lectorEscena = new LectorEscena(this, "escena.txt");
-
     }
 
     public void GenerarImagen(){
