@@ -8,26 +8,31 @@ package Math;
 
 
 public class Vector {
-    double x;
-    double y;
-    double z;
 
-    public MiVector(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    /** Array with 3 positions to store the vector */
+    protected double [] vector;
+    
+    /**
+     * Construct a vector with all zeroes.
+     */
+    public Vector3() {
+        vector = new double[3];
+        vector[0] = 0;
+        vector[1] = 0;
+        vector[2] = 0;
     }
 
-    public MiVector(Punto p1, Punto p2) {
-        this.x = p2.getX() - p1.getX();
-        this.y = p2.getY() - p1.getY();
-        this.z = p2.getZ() - p1.getZ();
-    }
-
-    public MiVector(Punto p){
-        this.x = p.getX();
-        this.y = p.getY();
-        this.z = p.getZ();
+    /**
+     * Construct a vector with the three provided numbers
+     * @param v0 x value
+     * @param v1 y value
+     * @param v2 z value
+     */
+    public Vector3(double v0, double v1, double v2) {
+        vector = new double[3];
+        vector[0] = v0;
+        vector[1] = v1;
+        vector[2] = v2;
     }
 
     /**
