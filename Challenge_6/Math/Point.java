@@ -1,43 +1,31 @@
-package escena;
+package Math;
 
-public class Punto {
-    double x;
-    double y;
-    double z;
-
-    public Punto(double x, double y, double z) {
+/**
+ * Class to hold the information for a 3D point.
+ */
+public class Point3 {
+    /** x */
+    protected double x;
+    /** y */
+    protected double y;
+    /** z */
+    protected double z;
+    
+    /**
+     * Constructor or a point
+     * @param x x coordinate
+     * @param y y coordinate 
+     * @param z z coordinate
+     */
+    public Point3(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getZ() {
-        return z;
-    }
-
-    public void setZ(double z) {
-        this.z = z;
-    }
-
+    
     @Override
     public String toString() {
-        return "Punto{" + "x=" + x + "y=" + y + "z=" + z + '}';
+        String s = x + " " + y + " " + z;
+        return s;
     }
-
 }
