@@ -11,7 +11,10 @@ public class System3x3 {
     /** Constant vector */
     protected final Vector3 c;
     /** Solution */
+    protected Vector3 s;
     
+    private final boolean DEBUG = false;
+
     /**
      * Construct a 3x3 system of equations with 3 unknowns
      * @param m coefficients matrix
@@ -51,7 +54,31 @@ public class System3x3 {
         if(DEBUG) System.out.println("mz: " + mz);
         return mz;
     }
-    
+
+    /**
+     * Solve the system
+     * @return x1, x2, x3 as a vector. Solution to the system.
+     * @throws java.lang.Exception
+     */
+    public Vector3 solve() throws Exception {
+        double d = Matrix3x3.determinant(this.m);
+        if(d == 0)
+            throw new Exception("No hay solucion");
+        double dx = Matrix3x3.determinant(createMx());
+        double dy = Matrix3x3.determinant(createMy());
+        double dz = Matrix3x3.determinant(createMz());
+        if(DEBUG) {
+            System.out.println("dx: " + dx);
+            System.out.println("dy: " + dy);
+            System.out.println("dz: " + dz);
+        }
+        double x = dx / d;
+        double y = dy / d;
+        double z = dz / d;
+        
+        return new Vector3(x, y, z);
+    }
+
     /**
      * Main program to test the program
      * @param args Not used
