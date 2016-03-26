@@ -21,11 +21,11 @@ import javax.swing.JPanel;
 public class Triangles extends JPanel {
     
     ArrayList<Vector3D> puntos;
-    ArrayList<Objects.Segment> segmentos;
+    ArrayList<Segment> segmentos;
     
     public void asignarColores() {
         Random rand = new Random();
-        Objects.Segment segmento = new Objects.Segment(null, null, null, 0, null);
+        Segment segmento = new Segment(null, null, null, 0, null);
         for (int i = 0; i < segmentos.size(); i++) {
             float r = rand.nextFloat();
             float g = rand.nextFloat();
@@ -43,7 +43,7 @@ public class Triangles extends JPanel {
         float x, y, z;
         int s1, s2, s3;
 
-        Objects.Segment segment;
+        Segment segment;
         Vector3D vector, vector1, vector2, vector3;        
         puntos = new ArrayList<>();
         
@@ -60,9 +60,10 @@ public class Triangles extends JPanel {
             puntos.add(vector);
         }
         
+        /* used to verify input data
         for(int i=0;i<puntos.size() ;i++){
             System.out.println(puntos.get(i).getX() + "," + puntos.get(i).getY() + "," + puntos.get(i).getZ());
-        }
+        }*/
         
         int numberOfSegments = Integer.parseInt(br.readLine());
         segmentos = new ArrayList<>();        
@@ -78,7 +79,7 @@ public class Triangles extends JPanel {
            vector1 = puntos.get(s1-1);
            vector2 = puntos.get(s2-1);
            vector3 = puntos.get(s3-1);
-           segment = new Objects.Segment(vector1, vector2, vector3, 0f);
+           segment = new Segment(vector1, vector2, vector3, 0f, null);
            segment.hallarP();
            //System.out.println("segmento " + i + " " + segment.p);
            segmentos.add(segment);     
@@ -87,7 +88,7 @@ public class Triangles extends JPanel {
     } 
     
     public void ordenarSegmentos() {
-        Objects.Segment buffer;
+        Segment buffer;
         int i, j;        
         
         for (i = 0; i < segmentos.size(); i++) {
@@ -101,7 +102,7 @@ public class Triangles extends JPanel {
         }
     }
     
-    public boolean hayConflicto(Objects.Segment s1, Objects.Segment s2){
+    public boolean hayConflicto(Segment s1, Segment s2){
         boolean conflict=false;
 
         //encontrar los puntos mínimos y máximos
@@ -143,7 +144,7 @@ public class Triangles extends JPanel {
     
     
     public void OrdenarCriterioConflicto(){
-        Objects.Segment buffer;
+        Segment buffer;
         int i, j;
         for (i = 0; i < segmentos.size()-1;i++) {
             for (j = i+1; j < segmentos.size(); j++) {
@@ -181,7 +182,7 @@ public class Triangles extends JPanel {
         asignarColores();        
         ordenarSegmentos();
         OrdenarCriterioConflicto();
-        Objects.Segment segmento;
+        Segment segmento;
         for (int i = 0; i < segmentos.size(); i++) {
             segmento = segmentos.get(i);
             //System.out.println("segmento " + i + " " + segmento.p);

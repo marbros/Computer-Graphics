@@ -1,6 +1,5 @@
-package Objects;
+package triangles;
 
-import triangles.Vector3D;
 import java.awt.Color;
 
 public class Segment {
@@ -19,16 +18,7 @@ public class Segment {
         this.p = p;       
     }
     
-    public Segment(Vector3D vector1, Vector3D vector2, Vector3D vector3, float p) {
-        this.vector1 = vector1;
-        this.vector2 = vector2;
-        this.vector3 = vector3;
-        this.p = p;       
-    }
-    
-    public void hallarP(){
-        //this.p=(vector1.getZ()+vector2.getZ()+vector3.getZ())/3; 
-     
+    public void hallarP(){     
         this.p = (float)Math.min(vector1.getZ(),vector2.getZ());//(vector1.getZ()+vector2.getZ()+vector3.getZ())/3; 
         this.p=(float)Math.min(this.p,vector3.getZ());
     }
