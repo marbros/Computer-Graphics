@@ -9,3 +9,6 @@ Code for the projects done at the Computer Graphics class at EAFIT University, 2
 
 ###Challenge 3 - House Paint 2D & 3D
 [![](https://github.com/marbros/Computer-Graphics/blob/master/Screenshots/CG_Challenge3.png?raw=true)]
+
+###Challenge 5 - Painter's algorithm
+[![Painter's algorithm](https://github.com/marbros/Computer-Graphics/blob/master/Screenshots/CG_Challenge5.png?raw=true)]
