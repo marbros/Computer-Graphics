@@ -41,18 +41,6 @@ public class Vector3D {
         return vector;
     }
 
-    public static Vector3D producto(Matriz3D m, Vector3D v2) {
-        Vector3D vector;
-
-        float x1 = (m.m[0][0] * v2.x) + (m.m[0][1] * v2.y) + (m.m[0][2] * v2.z) + (m.m[0][3] * v2.w);
-        float y1 = (m.m[1][0] * v2.x) + (m.m[1][1] * v2.y) + (m.m[1][2] * v2.z) + (m.m[1][3] * v2.w);
-        float z1 = (m.m[2][0] * v2.x) + (m.m[2][1] * v2.y) + (m.m[2][2] * v2.z) + (m.m[2][3] * v2.w);
-        float w1 = (m.m[3][0] * v2.x) + (m.m[3][1] * v2.y) + (m.m[3][2] * v2.z) + (m.m[3][3] * v2.w);
-        vector = new Vector3D(x1, y1, z1, w1);
-
-        return vector;
-    }
-
     public static Vector3D resta(Vector3D v1, Vector3D v2) {
         float x1 = v1.x - v2.x;
         float y1 = v1.y - v2.y;
