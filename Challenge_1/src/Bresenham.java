@@ -84,7 +84,7 @@ public class DibujarCirculo extends JPanel {
               g2d.drawLine(valx - y, valy + x, valx - y, valy + x); //(-y,x)
           }
           cont++;
-      }        
+      }
   } 
  
   /**

@@ -1,6 +1,6 @@
 package Objects;
 
-import Mathematics.Vector3D;
+import triangles.Vector3D;
 import java.awt.Color;
 
 public class Segment {

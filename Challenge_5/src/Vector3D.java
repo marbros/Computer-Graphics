@@ -1,8 +1,8 @@
-package Mathematics;
+package triangles;
 
 public class Vector3D {
 
-    float x, y, z, w, xn, yn, zn, wn;
+    float x, y, z, w;
 
     public Vector3D(float x, float y, float z, float w) {
         this.x = x;
@@ -16,9 +16,29 @@ public class Vector3D {
         return magnitud;
     }
 
+    public Vector3D  normalizar(Vector3D vector) { //revisar
+        float magnitud = magnitud(vector);
+        float x1 = vector.x / magnitud;
+        float y1 = vector.y / magnitud;
+        float z1 = vector.z / magnitud;
+        Vector3D vector1 = new Vector3D(x1,y1,z1,1); 
+        return vector1;
+    }
+
     public static float productoPunto(Vector3D v1, Vector3D v2) {
         float prodPunto = (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) + (v1.w * v2.w);
         return prodPunto;
+    }
+
+    public static Vector3D  productoCruz(Vector3D v1, Vector3D v2) {
+        Vector3D vector;
+               
+        float x1 = (v1.y * v2.z) - (v2.y * v1.z);
+        float y1 = (-1)*((v1.x*v2.z)-(v2.x*v1.z));
+        float z1 = (v1.x*v2.y)-(v2.x*v1.y);
+
+        vector = new Vector3D(x1, y1, z1, 1);
+        return vector;
     }
 
     public static Vector3D producto(Matriz3D m, Vector3D v2) {
@@ -85,41 +105,5 @@ public class Vector3D {
 
     public void setW(float w) {
         this.w = w;
-    }
-
-    public float getXn() {
-        return xn;
-    }
-
-    public void setXn(float xn) {
-        this.xn = xn;
-    }
-
-    public float getYn() {
-        return yn;
-    }
-
-    public void setYn(float yn) {
-        this.yn = yn;
-    }
-
-    public float getZn() {
-        return zn;
-    }
-
-    public void setZn(float zn) {
-        this.zn = zn;
-    }
-
-    public float getWn() {
-        return wn;
-    }
-
-    public void setWn(float wn) {
-        this.wn = wn;
-    }
-
-    public Vector3D clonar() {
-        return new Vector3D(x,y,z,w);
     }
 }
