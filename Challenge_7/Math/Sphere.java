@@ -1,70 +1,107 @@
 package Math;
 
+import Model.Material;
+import Model.MyColor;
+import Model.Shader;
 
-public class Sphere implements Intersectable {
-    /** Center point of the sphere */
-    protected Point3 center;
-    /** Radius of the sphere */
-    protected double radius;
-    
-    public static final boolean DEBUG = false;
-
+/**
+ *
+ * @author htrefftz
+ */
+public class Sphere {
+    Point center;
+    double radius;
+    Material material;
     /**
      * Constructor
-     * @param center Center point of the sphere
-     * @param radius Radius of the sphere
+     * @param center Center of the Sphere
+     * @param radius Radius of the Sphere
+     * @param material Material of the Sphere
      */
-    public Sphere(Point3 center, double radius) {
+    public Sphere(Point center, double radius, Material material) {
         this.center = center;
         this.radius = radius;
+        this.material = material;
     }
-
+    
     /**
-     * Computes the normal at a point on the surface of the sphere
-     * @param point point to compute the normal at
-     * @return a normalized vector from the center of the sphere to the point
-     * on the surface
+     * Intersect a Sphere with a ray. Returns the t value(s) for the ray at the solution(s)
+     * (if any).
+     * @param sphere Sphere to intersect the Ray with
+     * @param ray Ray on intersect the Sphere with
+     * @return Solutions. May be 0, 1 or 2 solutions
      */
-    public Vector3 computeNormal(Point3 point) {
-        Vector3 normal = new Vector3(center, point);
+    public static Solutions intersect(Sphere sphere, Ray ray) {
+        double a = Vector4.dotProduct(ray.u, ray.u);
+        Vector4 centerOrigin = new Vector4(sphere.center, ray.p0);
+        double b = 2 * (Vector4.dotProduct(centerOrigin,ray.u));
+        double c = Vector4.dotProduct(centerOrigin, centerOrigin) - 
+                sphere.radius * sphere.radius;
+        double det = b*b - 4*a*c;
+        if(det < 0) {
+            // No solutions
+            return new Solutions(0, 0, 0);
+        } else if (det > 0) {
+            // Two solutions
+            double sol1 = (-b - Math.sqrt(det))/(2*a);
+            double sol2 = (-b + Math.sqrt(det))/(2*a);
+            return new Solutions(2, sol1, sol2);
+        } else {
+            // One solution
+            double sol = (-b) / (2*a);
+            return new Solutions(1, sol, 0);
+        }
+    }
+    
+    /**
+     * Returns the normal of the sphere at point p.
+     * Point p is assumed to be at the surface of the sphere
+     * @param p point at the surface
+     * @return normal at point p
+     */
+    public Vector4 computeNormal(Point p) {
+        Vector4 normal = new Vector4(center, p);
         normal.normalize();
         return normal;
     }
     
     /**
-     * Finds the intersection(s) of this sphere with the ray provided as
-     * parameter
-     * @param ray Ray to check intersection with this sphere.
-     * @return An Array with the value(s) of the parameter in the ray that
-     *   determines the intersection(s) of the ray and the sphere.
-     *   If there are no intersections, array ret has 0 positions.
-     *   If there is only one intersection, array ret has 1 position.
-     *   If there are two intersections, array ret has 2 positions.
+     * Call the shader to determine the color a the point of intersection
+     * determined by the ray and parameter minT
+     * @param ray ray that determines the point
+     * @param minT value of parameter t
+     * @return Colour determined by the shader for this point
      */
+    public Colour callShader(Ray ray, double minT) {
+        Point point = ray.evaluate(minT);
+        Vector4 normal = new Vector4(center, point);
+        normal.normalize();
+        return Shader.computeColor(point, normal, material);
+    }
+
+    public Material getMaterial() {
+        return material;
+    }    
+    
     @Override
-    public double[] findIntersections(Ray ray) {
-        double [] ret = new double[2];
-        /*
-        Escribir aquí el código para hallar la intersección entre el rayo
-        y el triángulo
-        Leer el comentario en el encabezado del método para ver cómo se
-        retornan las posibles soluciones.
-        */
-        return ret;
+    public String toString() {
+        return "Sphere{" + "center=" + center + ", radius=" + radius + '}';
     }
     
+    /**
+     * Test main program
+     * @param args 
+     */
     public static void main(String [] args) {
-        Sphere sphere = new Sphere(new Point3(1d, 0d, 0d), 1d);
-        Ray ray1 = new Ray(new Point3(1d, 0d, 10d), new Point3(1d, 0d, 9d));
-        double [] solutions = sphere.findIntersections(ray1);
-        
-        Ray ray2 = new Ray(new Point3(2d, 0d, 10d), new Point3(2d, 0d, 9d));
-        solutions = sphere.findIntersections(ray2);
-
-        Ray ray3 = new Ray(new Point3(3d, 0d, 10d), new Point3(3d, 0d, 9d));
-        solutions = sphere.findIntersections(ray3);
-
+        Material m = new Material();
+        Sphere sphere1 = new Sphere(new Point(0, 0, -100d), 50d, m);
+        Ray ray1 = new Ray(new Point(0, 0, 0), new Point(0, 0, -10));
+        System.out.println(Sphere.intersect(sphere1, ray1));
+        Ray ray2 = new Ray(new Point(50, 0, 0), new Point(50, 0, -10));
+        System.out.println(Sphere.intersect(sphere1, ray2));
+        Ray ray3 = new Ray(new Point(100, 0, 0), new Point(100, 0, -10));
+        System.out.println(Sphere.intersect(sphere1, ray3));
+        Point p = new Point(Math.sin(Math.PI / 4d), Math.cos(Math.PI / 4d), -100);
+        System.out.println(sphere1.computeNormal(p));
     }
 }
-
-
